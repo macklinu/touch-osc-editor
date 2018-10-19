@@ -1,0 +1,46 @@
+---
+name: Colors
+---
+
+import colors from './colors'
+import { css } from 'emotion'
+import { startCase } from 'lodash'
+
+# Colors
+
+Here are some colors:
+
+<div
+  className={css({
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  })}
+>
+  {Object.values(colors).map(colorScheme => {
+    const Swatch = ({ color, ...props }) => (
+      <div
+        className={css({
+          backgroundColor: color,
+          height: 100,
+          width: 100,
+        })}
+        {...props}
+      />
+    )
+    return (
+      <div
+        className={css({
+          margin: 8,
+          padding: 8,
+          boxShadow: 'rgba(0, 0, 0, 0.25) 0px 2px 16px',
+        })}
+      >
+        <span>{startCase(colorScheme.name)}</span>
+        <Swatch color={colorScheme.bright()} />
+        <Swatch color={colorScheme.normal()} />
+        <Swatch color={colorScheme.dark()} />
+      </div>
+    )
+  })}
+</div>
