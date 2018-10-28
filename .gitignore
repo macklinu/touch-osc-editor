@@ -74,3 +74,6 @@ typings/
 
 # Docz build output
 .docz
+
+# Build output
+dist/
