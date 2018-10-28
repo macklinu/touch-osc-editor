@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "lint": "eslint src",
     "start": "parcel index.html -p 5000",
     "build": "parcel build index.html",
     "docs": "docz dev -p 4000",
@@ -21,12 +22,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "babel-eslint": "^10.0.1",
     "babel-plugin-emotion": "^9.2.11",
     "babel-plugin-import": "^1.10.0",
     "docz": "^0.12.5",
-    "eslint": "^5.7.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint": "^5.8.0",
+    "eslint-config-macklinu": "^1.0.0",
     "jest": "^23.6.0",
     "parcel-bundler": "^1.10.3",
     "prettier": "prettier/prettier"
