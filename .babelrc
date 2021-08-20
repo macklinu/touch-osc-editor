@@ -1,25 +1,4 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": [
-    [
-      "emotion",
-      {
-        "inline": true
-      }
-    ],
-    [
-      "import",
-      { "libraryName": "react-feather", "libraryDirectory": "dist/icons" },
-      "react-feather"
-    ],
-    [
-      "import",
-      {
-        "libraryName": "lodash",
-        "libraryDirectory": "",
-        "camel2DashComponentName": false
-      },
-      "lodash"
-    ]
-  ]
+  "presets": ["next/babel"],
+  "plugins": ["@emotion"]
 }

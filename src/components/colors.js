@@ -1,4 +1,4 @@
-const Color = require('color')
+import Color from 'color'
 
 class ColorScheme {
   constructor({ name, bright, normal, dark }) {
@@ -8,20 +8,20 @@ class ColorScheme {
     this._dark = Color.rgb(dark).lighten(0.7)
   }
 
-  bright() {
+  get bright() {
     return this._bright.string()
   }
 
-  normal() {
+  get normal() {
     return this._normal.string()
   }
 
-  dark() {
+  get dark() {
     return this._dark.string()
   }
 }
 
-export default {
+const colors = {
   gray: new ColorScheme({
     name: 'Gray',
     dark: [20, 20, 20],
@@ -77,3 +77,5 @@ export default {
     bright: [255, 5, 242],
   }),
 }
+
+export default colors

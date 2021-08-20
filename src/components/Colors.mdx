@@ -2,8 +2,11 @@
 name: Colors
 ---
 
+<!--  @jsxRuntime classic -->
+<!-- @jsx jsx -->
+
 import colors from './colors'
-import { css } from 'emotion'
+import { jsx, css } from '@emotion/react'
 import { startCase } from 'lodash'
 
 # Colors
@@ -11,35 +14,35 @@ import { startCase } from 'lodash'
 Here are some colors:
 
 <div
-  className={css({
+  css={{
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-  })}
+  }}
 >
-  {Object.values(colors).map(colorScheme => {
+  {Object.values(colors).map((colorScheme) => {
     const Swatch = ({ color, ...props }) => (
       <div
-        className={css({
+        css={{
           backgroundColor: color,
           height: 100,
           width: 100,
-        })}
+        }}
         {...props}
       />
     )
     return (
       <div
-        className={css({
+        css={{
           margin: 8,
           padding: 8,
           boxShadow: 'rgba(0, 0, 0, 0.25) 0px 2px 16px',
-        })}
+        }}
       >
         <span>{startCase(colorScheme.name)}</span>
-        <Swatch color={colorScheme.bright()} />
-        <Swatch color={colorScheme.normal()} />
-        <Swatch color={colorScheme.dark()} />
+        <Swatch color={colorScheme.bright} />
+        <Swatch color={colorScheme.normal} />
+        <Swatch color={colorScheme.dark} />
       </div>
     )
   })}

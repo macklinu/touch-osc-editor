@@ -1,7 +1,8 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+
 import React, { useState } from 'react'
-import { render } from 'react-dom'
-import { css } from 'emotion'
-import { injectGlobal } from 'react-emotion'
+import { jsx, Global } from '@emotion/react'
 import { map, max, pick, startCase } from 'lodash'
 import { PlusCircle } from 'react-feather'
 
@@ -38,14 +39,7 @@ let Orientation = {
   Horizontal: 'Horizontal',
 }
 
-injectGlobal([], {
-  'html, body': {
-    fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,sans-serif",
-  },
-})
-
-function App() {
+export default function HomePage() {
   const [layout, setLayout] = useState(Layout.IPhone6S)
   const [orientation, setOrientation] = useState(Orientation.Vertical)
   const [pages, setPages] = useState({ 1: { id: 1, name: '1' } })
@@ -69,19 +63,27 @@ function App() {
 
   return (
     <div
-      className={css({
+      css={{
         display: 'grid',
         height: '100vh',
         width: '100%',
         gridTemplateColumns: '256px 2fr',
-      })}
+      }}
     >
-      <section className={css({ padding: 16 })}>
+      <Global
+        styles={{
+          'html, body': {
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,sans-serif",
+          },
+        }}
+      />
+      <section css={{ padding: 16 }}>
         <h2>Layout</h2>
         <h3>Size</h3>
         <select
           value={layout.id}
-          onChange={event => {
+          onChange={(event) => {
             setLayout(Layout[event.target.value])
           }}
         >
@@ -94,11 +96,11 @@ function App() {
         <h3>Orientation</h3>
         <select
           value={orientation}
-          onChange={event => {
+          onChange={(event) => {
             setOrientation(event.target.value)
           }}
         >
-          {Object.values(Orientation).map(value => (
+          {Object.values(Orientation).map((value) => (
             <option key={value} value={value}>
               {startCase(value)}
             </option>
@@ -106,21 +108,21 @@ function App() {
         </select>
       </section>
       <main
-        className={css({
+        css={{
           backgroundColor: 'lightgray',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-        })}
+        }}
       >
         <div
-          className={css({
+          css={{
             background: 'white',
             minHeight: 64,
             width: '100%',
             display: 'flex',
             alignItems: 'center',
-          })}
+          }}
         >
           <ToolbarButton onClick={addPage}>
             <PlusCircle />
@@ -129,7 +131,7 @@ function App() {
         </div>
         <LayoutEditor {...pick(layout, ['width', 'height'])}>
           <LayoutEditorHeader
-            onContextMenu={e => {
+            onContextMenu={(e) => {
               e.preventDefault()
               showContextMenu({ x: e.pageX, y: e.pageY })
             }}
@@ -166,20 +168,20 @@ function determineNextPageId(pages) {
 function ContextMenu({ x, y, onClose, children }) {
   return (
     <div
-      className={css({
+      css={{
         position: 'absolute',
         display: 'block',
         left: x,
         top: y,
         border: '1px solid black',
         backgroundColor: 'white',
-      })}
+      }}
     >
       <button onClick={onClose}>Close</button>
       <ul
-        className={css({
+        css={{
           listStyleType: 'none',
-        })}
+        }}
       >
         {children}
       </ul>
@@ -190,14 +192,14 @@ function ContextMenu({ x, y, onClose, children }) {
 function ToolbarButton(props) {
   return (
     <button
-      className={css({
+      css={{
         display: 'inline-flex',
         flexDirection: 'column',
         alignItems: 'center',
         border: 'none',
         background: 'none',
         verticalAlign: 'middle',
-      })}
+      }}
       {...props}
     />
   )
@@ -206,11 +208,11 @@ function ToolbarButton(props) {
 function LayoutEditor({ width, height, children }) {
   return (
     <div
-      className={css({
+      css={{
         width,
         height,
         backgroundColor: 'black',
-      })}
+      }}
     >
       {children}
     </div>
@@ -220,12 +222,12 @@ function LayoutEditor({ width, height, children }) {
 function LayoutEditorHeader(props) {
   return (
     <div
-      className={css({
+      css={{
         display: 'flex',
         flexFlow: 'row',
         height: 40,
         width: '100%',
-      })}
+      }}
       {...props}
     />
   )
@@ -234,16 +236,14 @@ function LayoutEditorHeader(props) {
 function PageTab({ selected, ...props }) {
   return (
     <div
-      className={css({
+      css={{
         height: '100%',
         width: 'inherit',
         backgroundColor: selected ? '#333' : '#1c1c1c',
         borderRadius: 8,
         margin: '0 1px',
-      })}
+      }}
       {...props}
     />
   )
 }
-
-render(<App />, document.getElementById('root'))

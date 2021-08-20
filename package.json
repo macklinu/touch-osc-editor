@@ -5,30 +5,27 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint src",
-    "start": "parcel index.html -p 5000",
-    "build": "parcel build index.html",
+    "lint": "next lint",
+    "dev": "next",
+    "build": "next dev",
     "docs": "docz dev -p 4000",
     "docs:build": "docz build"
   },
   "dependencies": {
-    "color": "^3.1.0",
-    "emotion": "^9.2.12",
-    "lodash": "^4.17.11",
-    "react": "^16.7.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0",
-    "react-emotion": "^9.2.12",
-    "react-feather": "^1.1.4"
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "color": "^3",
+    "lodash": "^4.17.21",
+    "next": "^11.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-feather": "^2.0.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "babel-plugin-emotion": "^9.2.11",
-    "babel-plugin-import": "^1.10.0",
-    "docz": "^0.12.5",
-    "eslint": "^5.8.0",
-    "eslint-config-macklinu": "^1.0.0",
-    "jest": "^23.6.0",
-    "parcel-bundler": "^1.10.3",
-    "prettier": "prettier/prettier"
+    "@emotion/babel-plugin": "^11.3.0",
+    "docz": "^2.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^11.1.0",
+    "prettier": "^2.3.2"
   }
 }
